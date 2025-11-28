@@ -234,7 +234,7 @@ class UncertaintyModel(nn.Module):
         url = f"https://dl.fbaipublicfiles.com/dinov2/{backbone}/{backbone}_ade20k_linear_head.pth"
         with urllib.request.urlopen(url) as f:
             checkpoint_data = f.read()
-        checkpoint = torch.load(io.BytesIO(checkpoint_data), map_location="cpu")
+        checkpoint = torch.load(io.BytesIO(checkpoint_data), map_location="cpu", weights_only=False)
         old_weight = checkpoint["state_dict"]["decode_head.conv_seg.weight"]
         new_weight = torch.empty(1, old_weight.shape[1], 1, 1)
         nn.init.normal_(new_weight, 0, 0.0001)
@@ -451,7 +451,7 @@ class UncertaintyModel(nn.Module):
 
     @staticmethod
     def load(path: str, config: OmegaConf) -> "UncertaintyModel":
-        ckpt = torch.load(os.path.join(path), map_location="cpu")
+        ckpt = torch.load(os.path.join(path), map_location="cpu", weights_only=False)
 
         model = UncertaintyModel(config)
         model.load_state_dict(ckpt, strict=False)

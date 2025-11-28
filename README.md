@@ -53,11 +53,11 @@ pip install -r requirements.txt
 ```
 # Install simple-knn
 git clone https://gitlab.inria.fr/bkerbl/simple-knn.git
-pip install ./simple-knn
+pip install --no-build-isolation ./simple-knn
 
 # a modified gaussian splatting (for feature rendering)
 git clone --recursive https://github.com/SuLvXiangXin/diff-gaussian-rasterization
-pip install ./diff-gaussian-rasterization
+pip install --no-build-isolation ./diff-gaussian-rasterization
 
 # Install nvdiffrast (for Envlight)
 git clone https://github.com/NVlabs/nvdiffrast

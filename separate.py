@@ -76,13 +76,13 @@ if __name__ == "__main__":
     assert len(checkpoints) > 0, "No checkpoints found."
     checkpoint = sorted(checkpoints, key=lambda x: int(x.split("chkpnt")[-1].split(".")[0]))[-1]
     print(f"Loading checkpoint {checkpoint}")
-    (model_params, first_iter) = torch.load(checkpoint)
+    (model_params, first_iter) = torch.load(checkpoint, weights_only=False)
     gaussians.restore(model_params, args)
     
     if env_map is not None:
         env_checkpoint = os.path.join(os.path.dirname(checkpoint), 
                                     os.path.basename(checkpoint).replace("chkpnt", "env_light_chkpnt"))
-        (light_params, _) = torch.load(env_checkpoint)
+        (light_params, _) = torch.load(env_checkpoint, weights_only=False)
         env_map.restore(light_params)
     
     bg_color = [1, 1, 1] if args.white_background else [0, 0, 0]

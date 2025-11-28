@@ -90,7 +90,7 @@ class GaussianModel:
             if args.uncertainty_stage == 'stage2':
                 for p in self.uncertainty_model.parameters():
                     p.requires_grad = False
-                self.uncertainty_model.load_state_dict(torch.load(args.uncertainty_model_path), strict=False)
+                self.uncertainty_model.load_state_dict(torch.load(args.uncertainty_model_path, weights_only=False), strict=False)
                 self.uncertainty_model.eval()
             self.uncertainty_model = self.uncertainty_model.to("cuda")
         else:
