@@ -496,7 +496,7 @@ def readKittiMotInfo(args):
     basedir = args.source_path
     scene_id = basedir[-4:]  # check
     kitti_scene_no = int(scene_id)
-    tracking_path = basedir[:-13]  # check
+    tracking_path = basedir[:-5]  # check
     calibration_path = os.path.join(os.path.join(tracking_path, "calib"), scene_id + ".txt")
     oxts_path_tracking = os.path.join(os.path.join(tracking_path, "oxts"), scene_id + ".txt")
 

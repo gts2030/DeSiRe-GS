@@ -22,11 +22,14 @@ from utils.camera_utils import cameraList_from_camInfos, camera_to_JSON, calcula
 from scene.waymo_loader import readWaymoInfo
 from scene.kittimot_loader import readKittiMotInfo
 from scene.emer_waymo_loader import readEmerWaymoInfo
+from scene.omnire_waymo_loader import readOmniWaymoInfo
+
 import logging
 sceneLoadTypeCallbacks = {
     "Waymo": readWaymoInfo,
     "KittiMot": readKittiMotInfo,
     'EmerWaymo': readEmerWaymoInfo,
+    'OmniWaymo': readOmniWaymoInfo,
 }
 
 class Scene:
